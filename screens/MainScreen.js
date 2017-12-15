@@ -1,8 +1,13 @@
 import React, { Component } from 'react'; 
 import { View, Platform, Image } from 'react-native'; 
+import Expo from 'expo';
 import icon from '../assets/digiicon.png';
 import STATUS_BAR_HEIGHT from '../constants';
 
+const cacheImages = images => images.map((image) => {
+    if (typeof image === 'string') return Image.prefetch(image); 
+    return Expo.Asset.fromModule(image).downloadAsync();
+}); 
 
 class MainScreen extends Component {
     static navigationOptions = () => ({
@@ -20,7 +25,24 @@ class MainScreen extends Component {
             source={icon}
             style={styles.imageStyle} 
         />)
-    })
+    });
+
+    state = {
+        appIsReady: false
+    }
+
+    componentWillMount() {
+        this._loadAssetsAsync();
+    }
+
+    async _loadAssetsAsync() {
+        const imageAssets = cacheImages([icon]); 
+        await Promise.all([...imageAssets]);
+        // after 'then'
+        this.setState({
+            appIsReady: true
+        }); 
+    }
 
     render() {
         return (<View style={{ flex: 1, backgroundColor: '#ddd' }}>
