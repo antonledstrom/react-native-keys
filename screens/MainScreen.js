@@ -28,7 +28,7 @@ class MainScreen extends Component {
     });
 
     state = {
-        appIsReady: false
+        appIsReady: false 
     }
 
     componentWillMount() {
