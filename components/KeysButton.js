@@ -1,11 +1,16 @@
 import React, { Component } from 'react'; 
 import { View, Dimensions } from 'react-native'; 
 import { Text, ButtonGroup } from 'react-native-elements'; 
+import { connect } from 'react-redux'; 
+import { selectKeyIndex } from '../actions';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class KeysButton extends Component {
     render() {
+        const { selectedValues: { selectedKeyIndex }, keys } = this.props;
+        const keyButtons = keys.map(key => (key.shortKey ? '/' : [key.key]));
+        
         const {
             containerStyle,
             buttonStyle,
@@ -13,10 +18,12 @@ class KeysButton extends Component {
         } = styles;
 
         return (
-        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ paddingTop: 30, justifyContent: 'center', alignItems: 'center' }}>
             <Text h3>Key</Text>
-            <Text h1 style={{ marginButton: 2 }}>C</Text>
+            <Text h1 style={{ marginBottom: 2 }}>{keys[selectedKeyIndex].key}</Text>
             <ButtonGroup 
+             onPress={index => this.props.selectKeyIndex(index)}
+             buttons={keyButtons}
              containerStyle={containerStyle}
              buttonStyle={buttonStyle}
              selectedTextStyle={selectedTextStyle}
@@ -35,8 +42,11 @@ const styles = {
     },
     selectedTextStyle: {
         color: 'orange',
-        fontWeight: 'bold'
+        fontWeight: '900'
     }
 };
 
-export default KeysButton; 
+// reducers/index.js == theese args
+const mapStateToProps = ({ keys, selectedValues }) => ({ keys, selectedValues });
+// second arg = state ??, connect = redux connection 
+export default connect(mapStateToProps, { selectKeyIndex })(KeysButton);
