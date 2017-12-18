@@ -3,13 +3,10 @@ import {
     CLOSE_CHORDS_MODAL
 } from './types'; 
 
-export const openChordsModal = () => {
-    console.log('Chords modal clicked'); 
-    return {
-        type: OPEN_CHORDS_MODAL,
-        payload: true
-    };
-}; 
+export const openChordsModal = () => ({
+    type: OPEN_CHORDS_MODAL,
+    payload: true
+});
 
 export const closeChordsModal = () => ({
     type: CLOSE_CHORDS_MODAL,

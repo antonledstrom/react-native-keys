@@ -8,7 +8,7 @@ import KeysButton from '../components/KeysButton';
 import CapoButton from '../components/CapoButton';
 import CapoKey from '../components/CapoKey';
 import ViewChordsButton from '../components/ViewChordsButton';
-
+import ChordsModal from '../modals/ChordsModal';
 
 const cacheImages = images => images.map((image) => {
     if (typeof image === 'string') return Image.prefetch(image); 
@@ -56,6 +56,8 @@ class MainScreen extends Component {
     render() {
         const { containerStyle, dividerStyle, buttonContainerStyle } = styles; 
         return (<View style={{ flex: 1, backgroundColor: '#ddd' }}> 
+            <ChordsModal />
+            
             <View style={containerStyle}>
                 <KeysButton />
                 <Divider style={dividerStyle} />
