@@ -3,11 +3,16 @@ import { View, Platform, Image } from 'react-native';
 import Expo from 'expo';
 import icon from '../assets/digiicon.png';
 import STATUS_BAR_HEIGHT from '../constants';
+import KeysButton from '../components/KeysButton';
+
 
 const cacheImages = images => images.map((image) => {
     if (typeof image === 'string') return Image.prefetch(image); 
     return Expo.Asset.fromModule(image).downloadAsync();
 }); 
+
+// const cacheFonts = fonts => fonts.map(font => Font.loadAsync(font)); 
+  
 
 class MainScreen extends Component {
     static navigationOptions = () => ({
@@ -45,9 +50,8 @@ class MainScreen extends Component {
     }
 
     render() {
-        return (<View style={{ flex: 1, backgroundColor: '#ddd' }}>
-        {/* Chord modal */}
-        {/* Content */}
+        return (<View style={{ flex: 1, backgroundColor: '#ddd' }}> 
+            <KeysButton />
         </View>);
     }
 }
