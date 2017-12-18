@@ -5,12 +5,15 @@ import { connect } from 'react-redux';
 
 class CapoKey extends Component {
     render() {
+        const { selectedValues: { capoKeyIndex }, keys } = this.props;
+
         return (
         <View style={{ alignItems: 'center' }}> 
             <Text h3> Capo key</Text>   
-            <Text h1>(KEY)</Text>
+            <Text h1>{keys[capoKeyIndex].key}</Text>
         </View>);
     }
 }
 
-export default connect()(CapoKey); 
+const mapStateToProps = ({ keys, selectedValues }) => ({ keys, selectedValues }); 
+export default connect(mapStateToProps)(CapoKey); 
