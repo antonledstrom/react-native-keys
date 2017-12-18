@@ -5,6 +5,12 @@ export const STATUS_BAR_HEIGHT = Constants.statusBarHeight;
 
 export const SCREEN_WIDTH = Dimensions.get('window').width;
 
+export const DIGI_COLORS = {
+    orange: '#ed652e',
+    defaultFont: '#333',
+    defaultGreyBackground: '#ece8e5'
+};
+
 export const BUTTON_GROUP_STYLES = {
     containerStyle: {
         height: 40,
@@ -14,7 +20,8 @@ export const BUTTON_GROUP_STYLES = {
         backgroundColor: 'white'
     },
     selectedTextStyle: {
-        color: 'orange',
+        color: DIGI_COLORS.orange,
         fontWeight: '900'
     }
 };
+

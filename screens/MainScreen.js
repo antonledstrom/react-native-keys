@@ -1,10 +1,12 @@
 import React, { Component } from 'react'; 
 import { View, Platform, Image } from 'react-native'; 
+import { Divider } from 'react-native-elements'; 
 import Expo from 'expo';
 import icon from '../assets/digiicon.png';
-import STATUS_BAR_HEIGHT from '../constants';
+import { STATUS_BAR_HEIGHT, SCREEN_WIDTH, DIGI_COLORS } from '../constants';
 import KeysButton from '../components/KeysButton';
 import CapoButton from '../components/CapoButton';
+import CapoKey from '../components/CapoKey';
 
 
 const cacheImages = images => images.map((image) => {
@@ -20,11 +22,11 @@ class MainScreen extends Component {
         title: 'Digi Keys',
         headerStyle: {
             height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 74,
-            backgroundColor: '#ece8e5'
+            backgroundColor: DIGI_COLORS.defaultGreyBackground
         },
         headerTitleStyle: {
             marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
-            color: '#333'
+            color: DIGI_COLORS.defaultFont
         },
         headerLeft: (
         <Image
@@ -51,9 +53,15 @@ class MainScreen extends Component {
     }
 
     render() {
+        const { containerStyle, dividerStyle } = styles; 
         return (<View style={{ flex: 1, backgroundColor: '#ddd' }}> 
-            <KeysButton />
-            <CapoButton />
+            <View style={containerStyle}>
+                <KeysButton />
+                <Divider style={dividerStyle} />
+                <CapoButton />
+                <Divider style={dividerStyle} />
+                <CapoKey />
+            </View>
         </View>);
     }
 }
@@ -64,6 +72,15 @@ const styles = {
         marginLeft: 10,
         width: 40,
         height: 40
+    },
+    containerStyle: {
+        flex: 1,
+        justifyContent: 'space-around',
+        alignItems: 'center'
+    },
+    dividerStyle: {
+        width: SCREEN_WIDTH * 0.9,
+        backgroundColor: DIGI_COLORS.orange
     }
 };
 

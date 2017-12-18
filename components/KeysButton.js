@@ -16,15 +16,16 @@ class KeysButton extends Component {
         } = BUTTON_GROUP_STYLES;
 
         return (
-        <View style={{ paddingTop: 30, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <Text h3>Key</Text>
             <Text h1 style={{ marginBottom: 2 }}>{keys[selectedKeyIndex].key}</Text>
             <ButtonGroup 
-             onPress={index => this.props.selectKeyIndex(index)}
-             buttons={keyButtons}
-             containerStyle={containerStyle}
-             buttonStyle={buttonStyle}
-             selectedTextStyle={selectedTextStyle}
+                onPress={index => this.props.selectKeyIndex(index)}
+                buttons={keyButtons}
+                containerStyle={containerStyle}
+                buttonStyle={buttonStyle}
+                selectedTextStyle={selectedTextStyle}
+                selectedIndex={selectedKeyIndex}
             />
         </View>); 
     }
