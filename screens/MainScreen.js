@@ -7,6 +7,7 @@ import { STATUS_BAR_HEIGHT, SCREEN_WIDTH, DIGI_COLORS } from '../constants';
 import KeysButton from '../components/KeysButton';
 import CapoButton from '../components/CapoButton';
 import CapoKey from '../components/CapoKey';
+import ViewChordsButton from '../components/ViewChordsButton';
 
 
 const cacheImages = images => images.map((image) => {
@@ -53,7 +54,7 @@ class MainScreen extends Component {
     }
 
     render() {
-        const { containerStyle, dividerStyle } = styles; 
+        const { containerStyle, dividerStyle, buttonContainerStyle } = styles; 
         return (<View style={{ flex: 1, backgroundColor: '#ddd' }}> 
             <View style={containerStyle}>
                 <KeysButton />
@@ -62,6 +63,8 @@ class MainScreen extends Component {
                 <Divider style={dividerStyle} />
                 <CapoKey />
             </View>
+
+            <ViewChordsButton style={buttonContainerStyle} />
         </View>);
     }
 }
@@ -81,6 +84,11 @@ const styles = {
     dividerStyle: {
         width: SCREEN_WIDTH * 0.9,
         backgroundColor: DIGI_COLORS.orange
+    },
+    buttonContainerStyle: {
+        width: SCREEN_WIDTH,
+        justifyContent: 'center',
+        paddingBottom: 10
     }
 };
 
