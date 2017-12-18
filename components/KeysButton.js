@@ -1,21 +1,19 @@
 import React, { Component } from 'react'; 
-import { View, Dimensions } from 'react-native'; 
+import { View } from 'react-native'; 
 import { Text, ButtonGroup } from 'react-native-elements'; 
 import { connect } from 'react-redux'; 
 import { selectKeyIndex } from '../actions';
-
-const SCREEN_WIDTH = Dimensions.get('window').width;
+import { BUTTON_GROUP_STYLES } from '../constants';
 
 class KeysButton extends Component {
     render() {
         const { selectedValues: { selectedKeyIndex }, keys } = this.props;
         const keyButtons = keys.map(key => (key.shortKey ? '/' : [key.key]));
-        
         const {
             containerStyle,
             buttonStyle,
             selectedTextStyle
-        } = styles;
+        } = BUTTON_GROUP_STYLES;
 
         return (
         <View style={{ paddingTop: 30, justifyContent: 'center', alignItems: 'center' }}>
@@ -31,20 +29,6 @@ class KeysButton extends Component {
         </View>); 
     }
 }
-
-const styles = {
-    containerStyle: {
-        height: 40,
-        width: SCREEN_WIDTH * 0.9
-    },
-    buttonStyle: {
-        backgroundColor: 'white'
-    },
-    selectedTextStyle: {
-        color: 'orange',
-        fontWeight: '900'
-    }
-};
 
 // reducers/index.js == theese args
 const mapStateToProps = ({ keys, selectedValues }) => ({ keys, selectedValues });

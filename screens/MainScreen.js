@@ -4,6 +4,7 @@ import Expo from 'expo';
 import icon from '../assets/digiicon.png';
 import STATUS_BAR_HEIGHT from '../constants';
 import KeysButton from '../components/KeysButton';
+import CapoButton from '../components/CapoButton';
 
 
 const cacheImages = images => images.map((image) => {
@@ -52,6 +53,7 @@ class MainScreen extends Component {
     render() {
         return (<View style={{ flex: 1, backgroundColor: '#ddd' }}> 
             <KeysButton />
+            <CapoButton />
         </View>);
     }
 }
